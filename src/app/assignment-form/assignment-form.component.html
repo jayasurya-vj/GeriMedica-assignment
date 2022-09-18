@@ -1,0 +1,21 @@
+<section>
+    <form [formGroup]="gmForm" (ngSubmit)="onSubmit()">
+        <h3>Assignment Form</h3>
+        <ng-container *ngFor="let formField of formData">
+                <label [ngClass]="{
+                    'checkbox-container': formField.type=='check'}" [for]="formField.field">{{ formField.label }}
+                <input
+                  [type]="formField.type=='check'?'checkbox':formField.type"
+                  [id]="formField.field"
+                  [name]="formField.field"
+                  [formControlName]="formField.field"
+                 [hidden]="formField.hidden=='true'"
+                 (click)="formField.type=='check'? onCheckBoxClick($event,formField.field) : ''">  
+                 <span *ngIf="formField.type=='check'" class="checkmark"></span>  
+                </label>        
+            </ng-container>
+            
+        <button type="submit">Submit</button>    
+      </form>
+</section>
+
